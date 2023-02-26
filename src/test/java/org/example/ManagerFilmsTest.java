@@ -1,6 +1,7 @@
 package org.example;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,69 +13,77 @@ class ManagerFilmsTest {
 
         ManagerFilms manager = new ManagerFilms();
 
-        manager.addFilm("Film 1");
-        manager.addFilm("Film 2");
-        manager.addFilm("Film 3");
+        manager.addFilm("Film I");
+        manager.addFilm("Film II");
+        manager.addFilm("Film III");
 
-        String[] expected = {"Film 1", "Film 2", "Film 3"};
-        String[] actual = manager.findAll();
-    }
-
-    @Test
-    public void addOneFilm() {
-
-
-        ManagerFilms manager = new ManagerFilms();
-
-        manager.addFilm("Film 4");
-
-
-        String[] expected = {"Film 1", "Film 2", "Film 3", "Film 4"};
-        String[] actual = manager.findAll();
-    }
-
-    @Test
-    public void replayAddFilm() {
-
-
-        ManagerFilms manager = new ManagerFilms();
-
-        manager.addFilm("Film 2");
-
-
-        String[] expected = {"Film 1", "Film 2", "Film 2", "Film 3", "Film 4"};
+        String[] expected = {"Film I", "Film II", "Film III"};
         String[] actual = manager.findAll();
 
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void minlimitFilms() {
+    public void addOneFilms() {
+
+
         ManagerFilms manager = new ManagerFilms();
-        int resultLength = 3;
 
-        int expected = 3;
-        String[] actual = manager.findLast();
+        manager.addFilm("Film I");
+        manager.addFilm("Film II");
+        manager.addFilm("Film III");
+        manager.addFilm("Film IV");
 
+        String[] expected = {"Film I", "Film II", "Film III", "Film IV"};
+        String[] actual = manager.findAll();
+
+        Assertions.assertArrayEquals(expected, actual);
 
     }
 
     @Test
-    public void maxlimitFilms() {
+    public void lastFilms() {
         ManagerFilms manager = new ManagerFilms();
-        int resultLength = 12;
+        manager.addFilm("Film I");
+        manager.addFilm("Film II");
+        manager.addFilm("Film III");
+        manager.addFilm("Film IV");
 
-        int expected = 10;
+        String[] expected = {"Film IV", "Film III", "Film II", "Film I"};
         String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void limitFilms() {
-        ManagerFilms manager = new ManagerFilms();
-        int resultLength = 10;
+    public void maxFilms() {
+        ManagerFilms manager = new ManagerFilms(10);
+        manager.addFilm("Film I");
+        manager.addFilm("Film II");
+        manager.addFilm("Film III");
+        manager.addFilm("Film IV");
 
-        int expected = 10;
+        String[] expected = {"Film IV", "Film III", "Film II", "Film I"};
         String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
 
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
