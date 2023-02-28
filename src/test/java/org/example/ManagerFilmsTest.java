@@ -70,6 +70,40 @@ class ManagerFilmsTest {
 
 
     }
+    @Test
+    public void minFilms() {
+        ManagerFilms manager = new ManagerFilms(2);
+        manager.addFilm("Film I");
+        manager.addFilm("Film II");
+        manager.addFilm("Film III");
+        manager.addFilm("Film IV");
+
+        String[] expected = {"Film IV", "Film III"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+
+
+
+    }
+    @Test
+    public void moreFilms() {
+        ManagerFilms manager = new ManagerFilms(15);
+        manager.addFilm("Film I");
+        manager.addFilm("Film II");
+        manager.addFilm("Film III");
+        manager.addFilm("Film IV");
+
+        String[] expected = {"Film IV", "Film III","Film II","Film I"};
+        String[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+
+
+
+    }
+
+
 }
 
 
